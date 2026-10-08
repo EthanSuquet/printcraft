@@ -141,7 +141,7 @@ fn operators_split_across_content_streams_are_redacted_whole() {
     assert!(c.contains("KEEP"), "{c}");
     assert_eq!(under(&mut doc, 0, &[[40.0, 95.0, 50.0, 110.0]]), 2, "C and D are where they were");
     // Every operator still has its operands: none was cut off from them.
-    for op in printcraft_content::parse(c.as_bytes()).ops {
+    for op in pdfcraft_content::parse(c.as_bytes()).ops {
         let want = match op.op.as_slice() {
             b"TJ" | b"Tj" => 1,
             b"BDC" | b"Tf" | b"Td" => 2,
